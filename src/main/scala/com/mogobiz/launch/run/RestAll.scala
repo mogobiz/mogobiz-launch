@@ -21,6 +21,11 @@ object RestAll extends App with BootedMogobizSystem with MogobizActors with Mogo
   //init jobs
   CleanCartJob.start(system)
 
+  override val bootstrap = {
+    super[MogopayRoutes].bootstrap()
+    com.mogobiz.session.boot.DBInitializer()
+    com.mogobiz.notify.boot.DBInitializer()
+  }
 
   override val routes = super[MogobizRoutes].routes ~ super[MogopayRoutes].routes
 
