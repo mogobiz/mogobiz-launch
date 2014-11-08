@@ -2,7 +2,6 @@ package com.mogobiz.launch.run
 
 import akka.io.IO
 import com.mogobiz.run.actors.{ActorSystemLocator, MogobizActors}
-import com.mogobiz.run.config.Settings
 import com.mogobiz.run.jobs.CleanCartJob
 import com.mogobiz.run.mail.EmailService
 import com.mogobiz.run.services.MogobizRoutes
