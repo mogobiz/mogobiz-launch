@@ -1,11 +1,11 @@
 package com.mogobiz.launch.run
 
 import akka.io.IO
-import com.mogobiz.actors.{ActorSystemLocator, MogobizActors}
-import com.mogobiz.config.Settings
-import com.mogobiz.jobs.CleanCartJob
-import com.mogobiz.mail.EmailService
-import com.mogobiz.services.MogobizRoutes
+import com.mogobiz.run.actors.{ActorSystemLocator, MogobizActors}
+import com.mogobiz.run.config.Settings
+import com.mogobiz.run.jobs.CleanCartJob
+import com.mogobiz.run.mail.EmailService
+import com.mogobiz.run.services.MogobizRoutes
 import com.mogobiz.system.BootedMogobizSystem
 import spray.can.Http
 
