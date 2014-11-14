@@ -3,7 +3,6 @@ package com.mogobiz.launch.run
 import akka.actor.Props
 import akka.io.IO
 import com.mogobiz.run.actors.{ActorSystemLocator, MogobizActors}
-import com.mogobiz.run.boot.DBInitializer
 import com.mogobiz.run.jobs.CleanCartJob
 import com.mogobiz.run.mail.EmailService
 import com.mogobiz.pay.config.{MogopayActors, MogopayRoutes}
@@ -26,7 +25,7 @@ object RestAll extends App with BootedMogobizSystem with MogobizActors with Mogo
     super[MogopayRoutes].bootstrap()
     com.mogobiz.session.boot.DBInitializer()
     com.mogobiz.notify.boot.DBInitializer()
-    DBInitializer()
+    com.mogobiz.run.boot.DBInitializer()
   }
 
 
