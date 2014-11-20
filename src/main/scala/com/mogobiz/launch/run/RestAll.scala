@@ -15,8 +15,6 @@ object RestAll extends App with BootedMogobizSystem with MogobizActors with Mogo
   ActorSystemLocator(system)
   //init the email service with the system Actor
   EmailService(system, "emailService")
-  //init jobs
-  CleanCartJob.start(system)
 
   com.mogobiz.pay.jobs.ImportCountriesJob.start(system)
   com.mogobiz.pay.jobs.CleanAccountsJob.start(system)
@@ -28,6 +26,8 @@ object RestAll extends App with BootedMogobizSystem with MogobizActors with Mogo
     com.mogobiz.run.boot.DBInitializer()
   }
 
+  //init jobs
+  CleanCartJob.start(system)
 
   override val routes = super[MogobizRoutes].routes ~ super[MogopayRoutes].routes
 
