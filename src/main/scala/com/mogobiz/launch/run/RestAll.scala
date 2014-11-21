@@ -16,6 +16,7 @@ object RestAll extends App with BootedMogobizSystem with MogobizActors with Mogo
   //init the email service with the system Actor
   EmailService(system, "emailService")
 
+  com.mogobiz.pay.jobs.ImportRatesJob.start(system)
   com.mogobiz.pay.jobs.ImportCountriesJob.start(system)
   com.mogobiz.pay.jobs.CleanAccountsJob.start(system)
 
