@@ -34,5 +34,16 @@ object RestAll extends App with BootedMogobizSystem with MogobizActors with Mogo
 
   override val routesServices = system.actorOf(Props(new RoutedHttpService(routes)))
 
+  val banner =
+    """
+      | __  __                   _     _          __  __  __
+      ||  \/  | ___   __ _  ___ | |__ (_)____    / / |  \/  | ___   __ _  ___  _ __   __ _ _   _
+      || |\/| |/ _ \ / _` |/ _ \| '_ \| |_  /   / /  | |\/| |/ _ \ / _` |/ _ \| '_ \ / _` | | | |
+      || |  | | (_) | (_| | (_) | |_) | |/ /   / /   | |  | | (_) | (_| | (_) | |_) | (_| | |_| |
+      ||_|  |_|\___/ \__, |\___/|_.__/|_/___| /_/    |_|  |_|\___/ \__, |\___/| .__/ \__,_|\__, |
+      |              |___/                                         |___/      |_|          |___/
+      |    """.stripMargin
+  println(banner)
+
   IO(Http)(system) ! Http.Bind(routesServices, interface = Settings.Interface, port = Settings.Port)
 }

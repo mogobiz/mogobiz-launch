@@ -17,6 +17,16 @@ object Rest extends App with BootedMogobizSystem with MogobizActors with Mogobiz
 
   //init jobs
   CleanCartJob.start(system)
+  val banner =
+    """
+      | __  __                   _     _
+      ||  \/  | ___   __ _  ___ | |__ (_)____
+      || |\/| |/ _ \ / _` |/ _ \| '_ \| |_  /
+      || |  | | (_) | (_| | (_) | |_) | |/ /
+      ||_|  |_|\___/ \__, |\___/|_.__/|_/___|
+      |              |___/
+      |    """.stripMargin
+  println(banner)
 
   IO(Http)(system) ! Http.Bind(routesServices, interface = Settings.Interface, port = Settings.Port)
 }
