@@ -5,12 +5,12 @@ import akka.io.IO
 import com.mogobiz.run.actors.{ActorSystemLocator}
 import com.mogobiz.run.jobs.CleanCartJob
 import com.mogobiz.run.mail.EmailService
-import com.mogobiz.pay.config.{MogopayActors, MogopayRoutes}
+import com.mogobiz.pay.config.{MogopayRoutes}
 import com.mogobiz.run.services.MogobizRoutes
 import com.mogobiz.system.{BootedMogobizSystem, RoutedHttpService}
 import spray.can.Http
 
-object RestAll extends App with BootedMogobizSystem with MogobizRoutes with MogopayActors with MogopayRoutes {
+object RestAll extends App with BootedMogobizSystem with MogobizRoutes with MogopayRoutes {
 
   ActorSystemLocator(system)
   //init the email service with the system Actor
