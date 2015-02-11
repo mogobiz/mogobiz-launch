@@ -2,6 +2,7 @@ package com.mogobiz.launch.run
 
 import akka.actor.Props
 import akka.io.IO
+import com.mogobiz.pay.services.SwaggerDocService
 import com.mogobiz.run.actors.{ActorSystemLocator}
 import com.mogobiz.run.jobs.CleanCartJob
 import com.mogobiz.run.mail.EmailService
@@ -10,7 +11,9 @@ import com.mogobiz.run.services.MogobizRoutes
 import com.mogobiz.system.{BootedMogobizSystem, RoutedHttpService}
 import spray.can.Http
 
-object RestAll extends App with BootedMogobizSystem with MogobizRoutes with MogopayRoutes {
+object RestAll extends App with BootedMogobizSystem with MogobizRoutes with MogopayRoutes  {
+  // SwaggerHttpService cannot be composed correctly because it sets routes to final prohibiting any override :(
+  lazy val swaggerDocService = new SwaggerDocService()
 
   ActorSystemLocator(system)
   //init the email service with the system Actor
@@ -30,7 +33,7 @@ object RestAll extends App with BootedMogobizSystem with MogobizRoutes with Mogo
   //init jobs
   CleanCartJob.start(system)
 
-  override val routes = super[MogobizRoutes].routes ~ super[MogopayRoutes].routes
+  override val routes = super[MogobizRoutes].routes ~ super[MogopayRoutes].routes ~ swaggerDocService.allRoutes
 
   override val routesServices = system.actorOf(Props(new RoutedHttpService(routes)))
 
