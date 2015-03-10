@@ -27,7 +27,6 @@ object RestAll extends App with BootedMogobizSystem with MogobizRoutes with Mogo
     super[MogopayRoutes].bootstrap()
     com.mogobiz.session.boot.DBInitializer()
     com.mogobiz.notify.boot.DBInitializer()
-    com.mogobiz.run.boot.DBInitializer()
   }
 
   //init jobs
