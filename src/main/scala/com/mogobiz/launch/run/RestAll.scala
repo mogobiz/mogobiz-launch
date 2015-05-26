@@ -4,10 +4,10 @@ import akka.actor.Props
 import akka.io.IO
 import com.mogobiz.pay.services.SwaggerDocService
 import com.mogobiz.run.actors.{ActorSystemLocator}
+import com.mogobiz.run.config.MogobizRoutes
 import com.mogobiz.run.jobs.CleanCartJob
 import com.mogobiz.run.mail.EmailService
 import com.mogobiz.pay.config.{MogopayRoutes}
-import com.mogobiz.run.services.MogobizRoutes
 import com.mogobiz.system.{BootedMogobizSystem, RoutedHttpService}
 import spray.can.Http
 

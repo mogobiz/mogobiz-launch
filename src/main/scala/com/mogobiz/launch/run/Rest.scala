@@ -2,9 +2,9 @@ package com.mogobiz.launch.run
 
 import akka.io.IO
 import com.mogobiz.run.actors.{ActorSystemLocator}
+import com.mogobiz.run.config.MogobizRoutes
 import com.mogobiz.run.jobs.CleanCartJob
 import com.mogobiz.run.mail.EmailService
-import com.mogobiz.run.services.MogobizRoutes
 import com.mogobiz.system.BootedMogobizSystem
 import spray.can.Http
 
