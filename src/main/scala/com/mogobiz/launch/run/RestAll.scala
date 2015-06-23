@@ -2,7 +2,7 @@ package com.mogobiz.launch.run
 
 import akka.actor.Props
 import akka.io.IO
-import com.mogobiz.run.actors.{TransactionActor, ActorSystemLocator}
+import com.mogobiz.run.actors.{ActorSystemLocator}
 import com.mogobiz.run.config.MogobizRoutes
 import com.mogobiz.run.jobs.CleanCartJob
 import com.mogobiz.run.mail.EmailService
@@ -27,7 +27,6 @@ object RestAll extends App with BootedMogobizSystem with MogobizRoutes with Mogo
 
   //init jobs
   CleanCartJob.start(system)
-  TransactionActor.start()
 
   override val routes = super[MogobizRoutes].routes ~ super[MogopayRoutes].routes
 
