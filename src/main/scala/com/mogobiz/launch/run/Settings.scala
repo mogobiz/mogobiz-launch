@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014. Mogobiz S.A.S.
+ * Copyright (C) 2015 Mogobiz SARL. All rights reserved.
  */
 
 package com.mogobiz.launch.run
