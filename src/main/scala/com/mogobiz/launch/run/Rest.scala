@@ -8,16 +8,12 @@ import akka.io.IO
 import com.mogobiz.run.actors.{TransactionActor, ActorSystemLocator}
 import com.mogobiz.run.config.MogobizRoutes
 import com.mogobiz.run.jobs.CleanCartJob
-import com.mogobiz.run.mail.EmailService
 import com.mogobiz.system.BootedMogobizSystem
 import spray.can.Http
 
 object Rest extends App with BootedMogobizSystem  with MogobizRoutes {
 
   ActorSystemLocator(system)
-
-  //init the email service with the system Actor
-  EmailService(system,"emailService")
 
   //init jobs
   CleanCartJob.start(system)
