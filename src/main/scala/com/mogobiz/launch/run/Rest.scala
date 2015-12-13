@@ -5,7 +5,7 @@
 package com.mogobiz.launch.run
 
 import akka.io.IO
-import com.mogobiz.run.actors.{TransactionActor, ActorSystemLocator}
+import com.mogobiz.run.actors.{ActorSystemLocator}
 import com.mogobiz.run.config.MogobizRoutes
 import com.mogobiz.run.jobs.CleanCartJob
 import com.mogobiz.system.BootedMogobizSystem
@@ -17,7 +17,6 @@ object Rest extends App with BootedMogobizSystem  with MogobizRoutes {
 
   //init jobs
   CleanCartJob.start(system)
-  TransactionActor.start()
 
   val banner =
     """
