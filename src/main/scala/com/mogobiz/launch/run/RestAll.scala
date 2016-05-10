@@ -15,18 +15,17 @@ import com.mogobiz.system.{ ActorSystemLocator, BootedMogobizSystem, RoutedHttpS
 object RestAll extends App with BootedMogobizSystem with MogobizRoutes with MogopayRoutes {
   ActorSystemLocator(system)
 
+  //init jobs
   com.mogobiz.pay.jobs.ImportRatesJob.start(system)
   com.mogobiz.pay.jobs.ImportCountriesJob.start(system)
   com.mogobiz.pay.jobs.CleanAccountsJob.start(system)
+  CleanCartJob.start(system)
 
   override val bootstrap = {
     super[MogopayRoutes].bootstrap()
     com.mogobiz.session.boot.DBInitializer()
     com.mogobiz.notify.boot.DBInitializer()
   }
-
-  //init jobs
-  CleanCartJob.start(system)
 
   override val routes = super[MogobizRoutes].routes ~ super[MogopayRoutes].routes
 
