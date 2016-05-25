@@ -14,8 +14,9 @@ object Rest extends App with BootedMogobizSystem with MogobizRoutes {
 
   ActorSystemLocator(system)
 
-  //init jobs
-  CleanCartJob.start(system)
+  override val bootstrap = {
+    super[MogobizRoutes].bootstrap()
+  }
 
   val banner =
     """
