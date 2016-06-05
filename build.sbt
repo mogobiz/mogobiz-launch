@@ -1,5 +1,3 @@
-import java.io.PrintWriter
-
 name := "mogobiz-launch"
 
 Revolver.settings
