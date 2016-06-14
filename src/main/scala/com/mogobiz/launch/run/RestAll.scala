@@ -5,13 +5,14 @@
 package com.mogobiz.launch.run
 
 import akka.http.scaladsl.Http
+import akka.stream.impl.StreamSupervisor.Materialize
 import com.mogobiz.pay.config.MogopayRoutes
 import com.mogobiz.run.config.MogobizRoutes
-import com.mogobiz.system.{ActorSystemLocator, BootedMogobizSystem}
+import com.mogobiz.system.{ActorSystemLocator, BootedMogobizSystem, MaterializerLocator}
 
 object RestAll extends App with BootedMogobizSystem with MogobizRoutes with MogopayRoutes {
   ActorSystemLocator(system)
-
+  MaterializerLocator(materializer)
   override val bootstrap = {
     super[MogobizRoutes].bootstrap()
     super[MogopayRoutes].bootstrap()
