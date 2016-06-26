@@ -7,7 +7,7 @@ package com.mogobiz.launch.run
 import akka.io.IO
 import com.mogobiz.run.config.MogobizRoutes
 import com.mogobiz.run.jobs.CleanCartJob
-import com.mogobiz.system.{ ActorSystemLocator, BootedMogobizSystem }
+import com.mogobiz.system.{ActorSystemLocator, BootedMogobizSystem}
 import spray.can.Http
 
 object Rest extends App with BootedMogobizSystem with MogobizRoutes {
@@ -18,8 +18,7 @@ object Rest extends App with BootedMogobizSystem with MogobizRoutes {
     super[MogobizRoutes].bootstrap()
   }
 
-  val banner =
-    """
+  val banner = """
       | __  __                   _     _
       ||  \/  | ___   __ _  ___ | |__ (_)____
       || |\/| |/ _ \ / _` |/ _ \| '_ \| |_  /

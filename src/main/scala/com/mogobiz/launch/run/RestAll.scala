@@ -9,8 +9,8 @@ import akka.io.IO
 import spray.can.Http
 import com.mogobiz.run.config.MogobizRoutes
 import com.mogobiz.run.jobs.CleanCartJob
-import com.mogobiz.pay.config.{ MogopayRoutes }
-import com.mogobiz.system.{ ActorSystemLocator, BootedMogobizSystem, RoutedHttpService }
+import com.mogobiz.pay.config.{MogopayRoutes}
+import com.mogobiz.system.{ActorSystemLocator, BootedMogobizSystem, RoutedHttpService}
 
 object RestAll extends App with BootedMogobizSystem with MogobizRoutes with MogopayRoutes {
   ActorSystemLocator(system)
@@ -24,8 +24,7 @@ object RestAll extends App with BootedMogobizSystem with MogobizRoutes with Mogo
 
   override val routesServices = system.actorOf(Props(new RoutedHttpService(routes)))
 
-  val banner =
-    """
+  val banner = """
       | __  __                   _     _          __  __  __
       ||  \/  | ___   __ _  ___ | |__ (_)____    / / |  \/  | ___   __ _  ___  _ __   __ _ _   _
       || |\/| |/ _ \ / _` |/ _ \| '_ \| |_  /   / /  | |\/| |/ _ \ / _` |/ _ \| '_ \ / _` | | | |
