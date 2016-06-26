@@ -11,5 +11,4 @@ unmanagedClasspath in Runtime <<= (unmanagedClasspath in Runtime, baseDirectory)
 
 javaOptions := Seq("-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005", "-Xmx4G", "-XX:MaxPermSize=512m")
 
-scalariformSettings
 
