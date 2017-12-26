@@ -4,15 +4,16 @@
 
 package com.mogobiz.launch.run
 
-import akka.actor.Props
-import akka.io.IO
-import spray.can.Http
+import akka.http.scaladsl.Http
+import com.mogobiz.pay.config.MogopayRoutes
 import com.mogobiz.run.config.MogobizRoutes
-import com.mogobiz.run.jobs.CleanCartJob
-import com.mogobiz.pay.config.{MogopayRoutes}
-import com.mogobiz.system.{ActorSystemLocator, BootedMogobizSystem, RoutedHttpService}
+import com.mogobiz.system.{ActorSystemLocator, BootedMogobizSystem}
 
-object RestAll extends App with BootedMogobizSystem with MogobizRoutes with MogopayRoutes {
+object RestAll
+    extends App
+    with BootedMogobizSystem
+    with MogobizRoutes
+    with MogopayRoutes {
   ActorSystemLocator(system)
 
   override val bootstrap = {
@@ -22,9 +23,8 @@ object RestAll extends App with BootedMogobizSystem with MogobizRoutes with Mogo
 
   override val routes = super[MogobizRoutes].routes ~ super[MogopayRoutes].routes
 
-  override val routesServices = system.actorOf(Props(new RoutedHttpService(routes)))
-
-  val banner = """
+  val banner =
+    """
       | __  __                   _     _          __  __  __
       ||  \/  | ___   __ _  ___ | |__ (_)____    / / |  \/  | ___   __ _  ___  _ __   __ _ _   _
       || |\/| |/ _ \ / _` |/ _ \| '_ \| |_  /   / /  | |\/| |/ _ \ / _` |/ _ \| '_ \ / _` | | | |
@@ -34,5 +34,5 @@ object RestAll extends App with BootedMogobizSystem with MogobizRoutes with Mogo
       |    """.stripMargin
   println(banner)
 
-  IO(Http)(system) ! Http.Bind(routesServices, interface = Settings.Interface, port = Settings.Port)
+  Http().bindAndHandle(routes, Settings.ServerListen, Settings.ServerPort)
 }
